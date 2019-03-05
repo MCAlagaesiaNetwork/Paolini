@@ -54,8 +54,8 @@
         </div> 
       </div>           
     </header>
-    <!-- Header Section End --> 
-
+    <!-- Header Section End -->
+	
     <!-- Game Section Start -->
     <section id="game" class="section">
       <div class="container">
@@ -67,8 +67,69 @@
       </div>
     </section>
     <!-- Game Section End -->
-    
 	<section id="features">
+	<!-- News Section Start -->
+      <section id="news" class="section">
+        <div class="container">
+          <div class="section-header">          
+            <h2 class="section-title wow fadeIn" data-wow-duration="1000ms" data-wow-delay="0.3s">News</h2>
+    		<hr class="lines">
+            <div class="container">
+              <div class="row">
+	      <!--#if($post1)-->
+				<div class="col-lg-2 col-sm-4 col-xs-4 box-item">
+				  <img src="$msg.get("NEWS_POST_IMAGE", $post1)" onerror="this.src='img/news-placeholder.png';"/a>
+				</div>
+                <div class="col-lg-4 col-sm-8 col-xs-8 box-item">
+			  	  <div>
+                    <h4><a href="news/$msg.get("NEWS_POST_URL", $post1)">$msg.get("NEWS_POST_TITLE", $post1)</a></h4>
+                    <p>$msg.get("NEWS_POST_CONTENT_SMALL", $post1)</p>
+					<p class="readmore"><a href="news/$msg.get("NEWS_POST_URL", $post1)">Read More</a></p>
+                  </div>
+                </div>
+		  <!--#end-->
+	      <!--#if($post2)-->
+				<div class="col-lg-2 col-sm-4 col-xs-4 box-item">
+				  <img src="$msg.get("NEWS_POST_IMAGE", $post2)" onerror="this.src='img/news-placeholder.png';"/a>
+				</div>
+                <div class="col-lg-4 col-sm-8 col-xs-8 box-item">
+				  <div>
+                    <h4><a href="news/$msg.get("NEWS_POST_URL", $post2)">$msg.get("NEWS_POST_TITLE", $post2)</a></h4>
+                    <p>$msg.get("NEWS_POST_CONTENT_SMALL", $post2)</p>
+					<p class="readmore"><a href="news/$msg.get("NEWS_POST_URL", $post2)">Read More</a></p>
+                  </div>
+				</div>
+		  <!--#end-->
+	      <!--#if($post3)-->
+				<div class="col-lg-2 col-sm-4 col-xs-4 box-item">
+				  <img src="$msg.get("NEWS_POST_IMAGE", $post3)" onerror="this.src='img/news-placeholder.png';"/a>
+				</div>
+                <div class="col-lg-4 col-sm-8 col-xs-8 box-item">
+				  <div>
+                    <h4><a href="news/$msg.get("NEWS_POST_URL", $post3)">$msg.get("NEWS_POST_TITLE", $post3)</a></h4>
+                    <p>$msg.get("NEWS_POST_CONTENT_SMALL", $post3)</p>
+					<p class="readmore"><a href="news/$msg.get("NEWS_POST_URL", $post3)">Read More</a></p>
+                  </div>
+				</div>
+		  <!--#end-->
+	      <!--#if($post4)-->
+				<div class="col-lg-2 col-sm-4 col-xs-4 box-item">
+				  <img src="$msg.get("NEWS_POST_IMAGE", $post4)" onerror="this.src='img/news-placeholder.png';"/a>
+				</div>
+                <div class="col-lg-4 col-sm-8 col-xs-8 box-item">
+				  <div>
+                    <h4><a href="news/$msg.get("NEWS_POST_URL", $post4)">$msg.get("NEWS_POST_TITLE", $post4)</a></h4>
+                    <p>$msg.get("NEWS_POST_CONTENT_SMALL", $post4)</p>
+					<p class="readmore"><a href="news/$msg.get("NEWS_POST_URL", $post4)">Read More</a></p>
+                  </div>
+			    </div>
+		  <!--#end-->
+		      </div>
+		    </div>
+          </div>
+        </div>
+      </section>
+    <!-- News Section End -->	
 	
 	  <!-- Launcher Section Start -->
       <section id="launcher" class="section" data-stellar-background-ratio="0.2">
