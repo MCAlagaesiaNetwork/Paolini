@@ -12,9 +12,11 @@
 
         $(window).on('scroll', function() {
             if ($(window).scrollTop() > 200) {
-                $('.fixed-top').addClass('menu-bg');
+                $( ".nav-arc" ).fadeOut( "fast", function() {
+				});
             } else {
-                $('.fixed-top').removeClass('menu-bg');
+				$( ".nav-arc" ).fadeIn( "fast", function() {
+				});
             }
         });
 
