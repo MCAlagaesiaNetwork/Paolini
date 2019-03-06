@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="keywords" content="arcaena, mmo, rpg, game, alagaesia, eragon, eldest, brisingr, inheritance, inheritance cycle, mmorpg, mcalagaesia, dragon, minecraft">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="author" content="MCAlagaesia">
+	<meta name="description" content="The Inheritance Cycle MMORPG. Explore the world of Alagaesia in a game of magic, dragons and adventure.">
+    <title>Arcaena - Secrets of Alagaesia</title>
+	
+	<link rel="shortcut icon" type="image/png" href="favicon.ico"/>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/animate.css">
+    <link rel="stylesheet" href="css/main.css">  
+
+  </head>
+  <body>
+    <nav class="nav-arc">
+          <ul class="wow fadeIn" data-wow-duration="1000ms" data-wow-delay="0.5s">
+		  <!--#if($currentUser)-->
+            <li>
+              <a href="" data-target="">Log Out</a>
+            </li>
+			<li>
+              <a href="" data-toggle="modal" data-target="">Welcome back, <!--$msg.get("USERNAME", $currentUser)--></a>
+            </li>
+          <!--#else-->
+            <li>
+              <a href="" data-toggle="modal" data-target="#signup-modal">Sign Up</a>
+            </li>
+            <li>
+              <a href="" data-toggle="modal" data-target="#login-modal">Log In</a>
+            </li>
+		  <!--#end-->
+          </ul>
+    </nav>
+    <!-- Navbar End -->   
+    <!-- Header Section Start -->
+    <header id="hero-small" data-stellar-background-ratio="0.5">    
+      <div class="container">      
+        <div class="row justify-content-md-center">
+          <div class="col-md-10">
+            <div class="contents text-center">
+              <img class="wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="0.3s" src="img/title.png" alt="Arcaena Logo" /img>
+              <p class="lead  wow fadeIn" data-wow-duration="1000ms" data-wow-delay="400ms">Secrets of Alagaesia</p>
+			  <br>
+			  <h2 class="section-title wow fadeIn" data-wow-duration="1000ms" data-wow-delay="0.3s">News</h2>
+			  <p class="lead  wow fadeIn" data-wow-duration="1000ms" data-wow-delay="400ms">News and Develogs from the team behind Arcaena</p>
+            </div>
+          </div>
+        </div> 
+      </div>           
+    </header>
+    <!-- Header Section End --> 
+
+
+	<!-- News Section Start -->
+      <section id="news" class="section">
+        <div class="container">
+          <div class="container">
+            <div class="row">
+			<!--#foreach($article in $articles)-->
+			  <div class="col-lg-4 col-sm-4 col-xs-4 box-item">
+				<img src="/path/to/file/uploads/news/thumbnail/$article.number" onerror="this.src='img/news-placeholder.png';"/a>
+			  </div>
+              <div class="col-lg-8 col-sm-8 col-xs-8 box-item">
+			    <div>
+                  <h4><a href="news/$article.number">$msg.get("ARTICLE_TITLE", $article.title)</a></h4>
+                  <p>$msg.get("ARTICLE_SNIPPET", $article.snippet)</p>
+				  <p class="readmore"><a href="news/$article.number">Read More</a></p>
+                </div>
+              </div>
+			<!--#end-->
+		    </div>
+          </div>
+        </div>
+      </section>
+
+    <!-- Contact Section Start -->
+    <section id="release" class="section" data-stellar-background-ratio="-0.2">      
+      <div class="contact-form">
+        <div class="container">
+          <div class="row">     
+            <div class="col-lg-6 col-sm-6 col-xs-12">
+              <div class="contact-us">
+                <h3>Release of <i>Arcaena</i></h3>
+                <p style="font-size: 18px;
+">Arcaena is releasing in 2019. Follow us on social media and bookmark this page so you don't forget!</p>
+				<div class="social-icons">
+                  <ul>
+                    <li class="facebook"><a rel="me" title="Arcaena Facebook Page" href="https://www.facebook.com/TheArcaena/" target="_blank"><i class="fab fa-facebook"></i> /TheArcaena</a></li>
+                    <li class="twitter"><a rel="me" title="Arcaena Twitter Account" href="https://twitter.com/TheArcaena" target="_blank"><i class="fab fa-twitter"></i> @TheArcaena</a></li>
+					<li class="youtube"><a rel="me" title="Arcaena YouTube Channel" href="#"><i class="fab fa-youtube" target="_blank"></i> Coming Soon</a></li>
+					<li class="discord"><a rel="me" title="Arcaena Discord Server" href="https://discord.gg/T2rtFED" target="_blank"><i class="fab fa-discord"></i> discord.gg/T2rtFED</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>     
+            <div class="col-lg-6 col-sm-6 col-xs-12">
+                <img class="img-fulid" src="img/social.png" style="max-height: 300px;" alt="Stay Connected with Arcaena">
+            </div>
+          </div>
+        </div>
+      </div>           
+    </section>
+    <!-- Contact Section End -->
+
+    <!-- Footer Section Start -->
+    <footer>          
+      <div class="container">
+        <div class="row">
+          <!-- Footer Links -->
+          <div class="col-lg-6 col-sm-6 col-xs-12">
+		    <div class="copyright">
+		      <p>The Inheritance Cycle and Alagaesia are property of Christopher Paolini and affiliated publishers. Arcaena and The MCAlagaesia Project are not affiliated with Mojang AB or Microsoft Studios</p>
+			</div>
+          </div>
+          <div class="col-lg-6 col-sm-6 col-xs-12">
+            <div class="copyright">
+              <p>Copyright &copy; Arcaena 2019</p>
+            </div>
+          </div>  
+        </div>
+      </div>
+    </footer>
+    <!-- Footer Section End --> 
+
+    <!-- Go To Top Link -->
+    <a href="#" class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </a>
+    
+    <div id="loader">
+      <div class="spinner">
+        <div class="double-bounce1"></div>
+        <div class="double-bounce2"></div>
+      </div>
+    </div>
+	
+	<div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="arcmodalLabel" aria-hidden="true" style="display: none;">
+      <div class="modal-dialog">
+		<div class="arcmodal-container">
+		  <h1>Log in to Arcaena</h1><br>
+			<form>
+			  <input type="text" name="email" placeholder="Email Address">
+			  <input type="password" name="pass" placeholder="Password">
+			  <input type="submit" name="login" class="login arcmodal-submit" value="Log In">
+			</form>
+		  <div class="login-help">
+		  <a href="#">Forgot Password</a>
+		</div>
+	  </div>
+	</div>
+  </div>
+  <div class="modal fade" id="signup-modal" tabindex="-1" role="dialog" aria-labelledby="signupModalLabel" aria-hidden="true" style="display: none;">
+      <div class="modal-dialog">
+		<div class="arcmodal-container">
+		  <h1>Sign up for Arcaena</h1><br>
+			<form>
+			  <input type="text" name="user" placeholder="Username">
+			  <input type="text" name="email" placeholder="Email Address">
+			  <input type="text" name="emailConfirm" placeholder="Confirm Email Address">
+			  <input type="password" name="pass" placeholder="Password">
+			  <input type="submit" name="login" class="login arcmodal-submit" value="Sign Up">
+			</form>
+		  <div class="login-help">
+		    <p>You will be able to create a character once you log in.</p>
+		</div>
+	  </div>
+	</div>
+  </div>
+	
+    <!-- jQuery first, then Tether, then Bootstrap JS. -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="js/jquery-min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+	<script src="js/jquery.stellar.min.js"></script>
+    <script src="js/wow.js"></script>   
+    <script src="js/main.js"></script>
+
+  </body>
+</html>
