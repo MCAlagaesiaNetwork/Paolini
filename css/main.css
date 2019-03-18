@@ -7,11 +7,11 @@
    ========================================================================== */
 body {
   font-family: 'Poppins', sans-serif;
-  color: #333;
-  font-size: 14px;
+  font-size: 22px;
   font-weight: 400;
-  background: #fff;
   overflow-x: hidden;
+  background-color: #333;
+  color: #fff;
 }
 
 html {
@@ -19,12 +19,12 @@ html {
 }
 
 p {
-  font-size: 14px;
+  font-size: 22px;
   line-height: 26px;
 }
 
 a:hover, a:focus {
-  color: #0f52ba;
+  color: #0F52BA;
 }
 
 a {
@@ -32,11 +32,11 @@ a {
   -moz-transition: all 0.2s linear;
   -o-transition: all 0.2s linear;
   transition: all 0.2s linear;
+  color: #FFF;
 }
 
 h1, h2, h3, h4, h5 {
   font-family: 'Poppins', sans-serif;
-  font-size: 40px;
   font-weight: 700;
   letter-spacing: 1px;
 }
@@ -265,7 +265,7 @@ a:not([href]):not([tabindex]):focus, a:not([href]):not([tabindex]):hover {
 /* ==========================================================================
    3. Hero Area
    ========================================================================== */
-#hero-area {
+#hero-area, #hero-small {
   background: url(../img/hero-area.jpg) fixed no-repeat;
   background-size: cover;
   color: #fff;
@@ -273,7 +273,7 @@ a:not([href]):not([tabindex]):focus, a:not([href]):not([tabindex]):hover {
   position: relative;
 }
 
-#hero-area .overlay {
+#hero-area .overlay, #hero-small .overlay {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -287,12 +287,12 @@ a:not([href]):not([tabindex]):focus, a:not([href]):not([tabindex]):hover {
   padding: 35% 0 55%;
 }
 
-#hero-area .contents img {
+#hero-area .contents img, #hero-small .contents img {
   width: 70%;
   margin-bottom: 25px;
 }
 
-#hero-area .contents p {
+#hero-area .contents p, #hero-small .contents p {
   font-size: 22px;
   color: #fff;
   font-weight: 400;
@@ -300,10 +300,43 @@ a:not([href]):not([tabindex]):focus, a:not([href]):not([tabindex]):hover {
   letter-spacing: 0.5px;
 }
 
+/* ==========================================================================
+   3. Hero Small
+   ========================================================================== */
+
+#hero-small .contents {
+  padding: 10% 0 10%;
+}
 
 /* ==========================================================================
   6. Features Section Style
    ========================================================================== */
+#news {
+  background: url(../img/bg-news.jpg) fixed no-repeat;
+  background-size: cover;
+  color: #fff;
+  overflow: hidden;
+  position: relative;
+}
+
+#news img {
+	max-width: 100%;
+}
+
+#news h4 {
+  color: #fff;
+  font-weight: 700;
+  font-size: 18px;
+  text-transform: uppercase;
+  line-height: 22px;
+}
+
+#news .readmore {
+	text-align: right;
+	padding-right: 30px;	
+}
+
+
 #launcher {
   background: url(../img/bg-a.jpg) fixed no-repeat;
   background-size: cover;
@@ -568,6 +601,7 @@ footer {
 
 .copyright p {
   color: #fff;
+  font-size: 14px;
 }
 
 .copyright p a {
