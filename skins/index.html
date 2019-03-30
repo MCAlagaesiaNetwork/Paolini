@@ -60,26 +60,51 @@
 	
       <div class="container">
 		<img src="../img/features/characters.png" alt="Design a Skin for Arcaena" style="max-width: 50%;">
-		<p><b>When you create a character in Arcaena, you'll be able to select a skin from a list of quality skins that we've curated just for the game.</b><br>During the development phase, we'd like to give you the opportunity to design one or more skins that will be available to choose!</p>
-		<p>If you'd love to contribute a skin to see your own work in the game, use one of the templates below.<br>Arcaena skins are slightly different from Minecraft skins. They're 128 pixels in width and height, whereas default Minecraft skins are 64 pixels in both dimensions.</p>
-		<br>
-        <div class="container">
-          <div class="row">
-            <div class="col-lg-6 col-sm-6 col-xs-6 box-item">
-              <h5>Layout template</h5>
-              <img src="img/layout.png" alt="Layout template">
+		<div class="row">
+		  <div class="col-lg-8 col-sm-12 col-xs-12 box-item">
+		    <p><b>When you create a character in Arcaena, you'll be able to select a skin from a list of quality skins that we've curated just for the game.</b><br>During the development phase, we'd like to give you the opportunity to design one or more skins that will be available to choose!</p>
+	 	    <p>If you'd love to contribute a skin to see your own work in the game, use one of the templates below.<br>Arcaena skins are slightly different from Minecraft skins. They're 128 pixels in width and height, whereas default Minecraft skins are 64 pixels in both dimensions.</p>
+		    <br>
+            <div class="container">
+              <div class="row">
+                <div class="col-lg-6 col-sm-6 col-xs-6 box-item">
+                  <h5>Layout template</h5>
+                  <img src="img/layout.png" alt="Layout template">
+                </div>
+		        <div class="col-lg-6 col-sm-6 col-xs-6 box-item">
+                  <h5>Steve example</h5>
+                  <img src="img/example.png" alt="Steve example">
+			    </div>
+              </div>
             </div>
-		    <div class="col-lg-6 col-sm-6 col-xs-6 box-item">
-              <h5>Steve example</h5>
-              <img src="img/example.png" alt="Steve example">
-			</div>
-          </div>
-        </div>
-		<br>
-		<p>(Right click -> Save image as)<br>Use your favourite image editing software (e.g. Adobe Photoshop, Paint.NET, MS Paint).</p>
-		<p>Have fun working on your designs. Submissions will be made via this page. Submissions are currently disabled, however, we will notify you when you can submit your work.</p>
-		<p>Remember that submitting a skin is no guarantee that it will be used in the game. It should be of high quality and feature a medieval human, elf, dwarf or Urgal.</p>
-		<p><b>We're looking forward to seeing what you come up with!</b></p>
+		    <br>
+		    <p>(Right click -> Save image as)<br>Use your favourite image editing software (e.g. Adobe Photoshop, Paint.NET, MS Paint).</p>
+		    <p>Have fun working on your designs. Submissions can be made via this page.</p>
+		    <p>Remember that submitting a skin is no guarantee that it will be used in the game. It should be of high quality and feature a medieval human, elf, dwarf or Urgal.</p>
+		    <p><b>We're looking forward to seeing what you come up with!</b></p>
+	      </div>
+	      <div class="col-lg-4 col-sm-12 col-xs-12 box-item">
+	        <h3>Upload your Skin</h3>
+	        <form action="">
+	          <input type="file" name="skin" accept="image/png"><br><br>
+	          <h4>Tell us about it</h4>
+	          Race:
+		      <select id="race">
+                <option value="human">Human</option>
+                <option value="elf">Elf</option>
+                <option value="dwarf">Dwarf</option>
+                <option value="urgal">Urgal</option>
+              </select><br><br>
+              Sex:
+		      <select id="gender">
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+                <option value="either">Either</option>
+              </select><br><br>
+	          <input type="submit">
+            </form>
+	      </div>
+	    </div>
 	  </div>
 
     <!-- jQuery first, then Tether, then Bootstrap JS. -->
