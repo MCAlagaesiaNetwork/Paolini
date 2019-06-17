@@ -589,34 +589,63 @@
       <div class="modal-dialog">
 		<div class="arcmodal-container">
 		  <h1>Log in to Arcaena</h1><br>
-			<form>
-			  <input type="text" name="email" placeholder="Email Address">
-			  <input type="password" name="pass" placeholder="Password">
-			  <input type="submit" name="login" class="login arcmodal-submit" value="Log In">
-			</form>
+		  <form>
+			<input type="text" name="email" placeholder="Email Address">
+			<input type="password" name="pass" placeholder="Password">
+			<input type="submit" name="login" class="login arcmodal-submit" value="Log In">
+		  </form>
 		  <div class="login-help">
-		  <a href="#">Forgot Password</a>
-		</div>
+		    <a href="" data-toggle="modal" data-target="#forgot-pass-modal">Forgot Password</a>
+		  </div>
+	    </div>
 	  </div>
-	</div>
-  </div>
-  <div class="modal fade" id="signup-modal" tabindex="-1" role="dialog" aria-labelledby="signupModalLabel" aria-hidden="true" style="display: none;">
+    </div>
+	<div class="modal fade" id="forgot-pass-modal" tabindex="-1" role="dialog" aria-labelledby="arcmodalLabel" aria-hidden="true" style="display: none;">
+      <div class="modal-dialog">
+		<div class="arcmodal-container">
+		  <h1>Password Reset</h1><br>
+		  <form>
+			<input type="text" name="email" placeholder="Email Address">
+			<input type="submit" name="password-reset" class="login arcmodal-submit" value="Reset Password">
+		  </form>
+		  <div class="login-help">
+		    <p>A password reset link will be sent to the email address you provide.</p>
+		    <a href="" data-toggle="modal" data-target="#forgot-email-modal">Forgot Email Address</a>
+		  </div>
+	    </div>
+	  </div>
+    </div>
+	<div class="modal fade" id="forgot-email-modal" tabindex="-1" role="dialog" aria-labelledby="arcmodalLabel" aria-hidden="true" style="display: none;">
+      <div class="modal-dialog">
+		<div class="arcmodal-container">
+		  <h1>Account Recovery</h1><br>
+		  <form>
+			<input type="text" name="email" placeholder="Username">
+			<input type="submit" name="recover-account" class="login arcmodal-submit" value="Recover Account">
+		  </form>
+		  <div class="login-help">
+		    <p>This is the username you use on the Arcaena website and forums, and not the name of your character/s in Arcaena.</p>
+		    <p>A password reset link will be sent to the email address connected with the username you provide.</p>
+		  </div>
+	    </div>
+	  </div>
+    </div>
+    <div class="modal fade" id="signup-modal" tabindex="-1" role="dialog" aria-labelledby="signupModalLabel" aria-hidden="true" style="display: none;">
       <div class="modal-dialog">
 		<div class="arcmodal-container">
 		  <h1>Sign up for Arcaena</h1><br>
-			<form>
-			  <input type="text" name="user" placeholder="Username">
-			  <input type="text" name="email" placeholder="Email Address">
-			  <input type="text" name="emailConfirm" placeholder="Confirm Email Address">
-			  <input type="password" name="pass" placeholder="Password">
-			  <input type="submit" name="login" class="login arcmodal-submit" value="Sign Up">
-			</form>
+		  <form>
+			<input type="text" name="user" placeholder="Username">
+			<input type="text" name="email" placeholder="Email Address">
+			<input type="password" name="pass" placeholder="Password">
+			<input type="submit" name="login" class="login arcmodal-submit" value="Sign Up">
+		  </form>
 		  <div class="login-help">
 		    <p>You will be able to create a character once you log in.</p>
-		</div>
+		  </div>
+	    </div>
 	  </div>
-	</div>
-  </div>
+    </div>
 	
     <!-- jQuery first, then Tether, then Bootstrap JS. -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
