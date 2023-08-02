@@ -10,8 +10,12 @@ body {
   color: #333;
   font-size: 14px;
   font-weight: 400;
-  background: #fff;
+  background: #333;
   overflow-x: hidden;
+}
+
+body::-webkit-scrollbar {
+  display: none;
 }
 
 html {
