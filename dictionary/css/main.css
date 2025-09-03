@@ -1,0 +1,437 @@
+/* === BACKGROUND === */
+body {
+    margin: 0;
+    position: relative;
+    background-color: #5a5a5a;
+    background-attachment: fixed;
+    text-align: center;
+    color: white;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+body::before { 
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0; bottom: 0; left: 0; right: 0;
+    background: inherit;
+    background-size: cover;
+    filter: blur(3px) brightness(75%);
+    z-index: -1;
+}
+
+/* === NAVIGATION === */
+nav {
+    top: 0; left: 0; right: 0;
+    display: flex;
+    justify-content: space-evenly;
+    padding: 10px 0;
+    background: rgba(0, 0, 0, 0.5);
+}
+nav a, #below-fold a {
+    color: white;
+    text-decoration: none;
+    font-size: 20px;
+    transition: color 0.3s;
+}
+
+nav a:hover, #below-fold a:hover {
+    color: #7289DA;
+}
+
+/* === LOGO === */
+.site-logo {
+    text-align: center;
+    margin-top: 28px;
+}
+.site-logo img {
+    height: 100px;
+    max-width: 92vw;
+    filter: drop-shadow(0 4px 20px #000b);
+    transition: transform 0.18s;
+}
+
+/* === MAIN CONTENT LAYOUT === */
+.words-container {
+    width: 720px;
+    max-width: 90%;
+    margin: 0 auto;
+    margin-top: 30px;
+    background: rgba(0,0,0,0.5);
+    border-radius: 18px;
+    box-shadow: 0 8px 38px rgba(20,20,40,0.25);
+    padding: 24px 10px 36px 10px;
+    flex: 1 0 auto;
+    overflow-x: auto;
+}
+
+h1, .words-container h1 {
+    margin: 8px auto 0 auto;
+    font-size: 2.2em;
+    letter-spacing: 1px;
+    color: #fff;
+    text-shadow: 2px 3px 8px #000a;
+}
+.words-container p,
+p {
+    font-size: 1.15em;
+    color: #eee;
+    text-shadow: 0 2px 6px #0007;
+    margin-bottom: 22px;
+}
+
+#below-fold {
+    margin-top: 38px;
+    padding: 10px;
+    background: rgba(0, 0, 0, 0.5);
+    flex-shrink: 0;
+}
+
+.content-columns {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+.content-columns > div {
+    flex-basis: 30%;
+    padding: 20px;
+    box-sizing: border-box;
+}
+.legal { font-size: 16px; }
+
+@media (max-width: 600px) {
+    .site-logo img { height: 60px; }
+    .site-logo { margin-top: 16px; margin-bottom: 5px; }
+    .content-columns > div { flex-basis: 100%; }
+}
+
+#content {
+    max-width: 80%;
+    text-shadow: 4px 4px 8px rgba(0, 0, 0, 1);
+}
+@media (max-width: 600px) { #content { width: 100%; } }
+
+/* === BUTTONS === */
+.button {
+    background-color: #7289DA;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    display: inline-block;
+    font-size: 20px;
+    border-radius: 10px;
+    margin: 4px 2px;
+    cursor: pointer;
+    transition: transform 0.3s;
+    text-shadow: none;
+}
+.button:hover { transform: scale(1.05); }
+
+/* === OPTION BOXES (if used elsewhere) === */
+div.options-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+a.option-box {
+    background-color: rgba(0, 0, 0, 0.2);
+    margin: 10px;
+    padding: 20px;
+    flex-basis: calc(25% - 20px);
+    min-width: 250px;
+    box-sizing: border-box;
+    color: white;
+    border-radius: 10px;
+    text-decoration: none;
+    transition: background-color 0.3s;
+}
+a.option-box:hover { background-color: rgba(0, 0, 0, 0.4); }
+a.option-box h3 {
+    color: white; font-weight: bold;
+}
+a.option-box p {
+    margin-top: 10px;
+    font-size: 16px;
+}
+@media (max-width: 600px) {
+    a.option-box { flex-basis: 100%; }
+}
+
+/* === TABLE: WORDS/DICTIONARY === */
+.table-sort {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    border-radius: 16px;
+    overflow: hidden;
+    background: rgba(30,38,60,0.28); /* glass effect */
+    box-shadow: 
+        0 8px 38px 0 rgba(60,90,130,0.18),
+        0 0 80px 0 #141e3b44 inset;
+    backdrop-filter: blur(4px) brightness(1.10); 
+    margin-top: 12px;
+}
+
+/* === TABLE HEADER === */
+.table-sort thead th {
+    background: rgba(63,82,124, 0.26);
+    color: #fbe9bc;
+    font-size: 1.13em;
+    padding: 12px 18px;
+    text-align: center;
+    border-bottom: 1px solid rgba(155,175,220,0.19);
+    letter-spacing: 0.5px;
+    font-weight: 600;
+    box-shadow: 0 1px 0 0 #0002 inset;
+    cursor: pointer;
+    user-select: none;
+    transition: background 0.24s, color 0.18s;
+    position: relative;
+}
+.table-sort thead th:hover, .table-sort th.active-sort, .table-sort th:focus {
+    background: rgba(106,126,185,0.22) !important;
+    color: #fcdc89 !important;
+    outline: none;
+}
+
+/* Sort arrow styling */
+.header-flex {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.sort-arrow {
+    font-size: 1.07em;
+    margin-left: 7px;
+    transition: color 0.22s;
+    color: #a4bdff;
+}
+.table-sort th.active-sort .sort-arrow { color: #ffd700; }
+
+/* === TABLE BODY & CELLS === */
+.table-sort tbody tr {
+    transition: background 0.18s;
+}
+.table-sort tbody tr:nth-child(even) {
+    background: rgba(88,101,132,0.15);
+}
+.table-sort tbody tr:nth-child(odd) {
+    background: rgba(55,65,91,0.12);
+}
+.table-sort tbody tr:hover {
+    background: rgba(163,178,219,0.13);
+}
+.table-sort td {
+    color: #fffbea;
+    padding: 11px 15px;
+    font-size: 1.07em;
+    border-bottom: 1px solid rgba(145,160,200,0.08);
+    text-align: left;
+    background: transparent;
+    transition: background 0.18s, color 0.18s;
+}
+.table-sort td:first-child {
+    color: #fcdc89;
+    font-family: 'Georgia', 'Times New Roman', serif;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    font-size: 1.09em;
+    text-shadow: 0 1px 3px #20170c22;
+    background: rgba(145, 112, 15, 0.09); /* soft gold */
+    border-right: 1px solid rgba(125,145,195,0.08);
+}
+.table-sort tr:last-child td { border-bottom: none; }
+
+/* === RESPONSIVE TABLES === */
+@media (max-width: 800px) {
+    .table-sort td, .table-sort th {
+        padding: 8px 5px;
+        font-size: 1em;
+    }
+}
+@media (max-width: 600px) {
+    .table-sort, .table-sort thead, .table-sort tbody, 
+    .table-sort th, .table-sort td, .table-sort tr {
+        display: block;
+    }
+    .table-sort thead { display: none; }
+    .table-sort tr { margin-bottom: 14px;}
+    .table-sort td {
+        padding: 8px 6vw;
+        position: relative;
+        border: none;
+        background: rgba(51,51,81,0.17)!important;
+    }
+    .table-sort td:first-child {
+        background: rgba(145, 112, 15, 0.08) !important;
+    }
+    .table-sort td:before {
+        display: inline;
+        content: attr(data-label);
+        float: left;
+        font-weight: bold;
+        color: #ffd757;
+        font-family: 'Georgia', serif;
+        margin-right: 7px;
+    }
+}
+
+/* === TABLE SEARCH BAR === */
+.table-search-container {
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    max-width: 420px;
+    margin: 0 auto 18px auto;
+    position: relative;
+    background: rgba(91,99,110,0.32);
+    border-radius: 8px;
+    padding: 2px 10px;
+    box-shadow: 0 2px 12px #0003;
+}
+.table-search-input {
+    width: 100%;
+    font-size: 1.11em;
+    padding: 10px 34px 10px 12px;
+    border: none;
+    border-radius: 8px;
+    background: transparent;
+    color: #ffeeba;
+    outline: none;
+    transition: background 0.16s, box-shadow 0.24s;
+}
+.table-search-input::placeholder {
+    color: #aaa;
+    opacity: 1;
+}
+.table-search-input:focus {
+    background: rgba(120,110,60,0.23);
+    box-shadow: 0 0 0 2px #ffd75755;
+    color: #fffcec;
+}
+.search-icon {
+    position: absolute;
+    right: 14px;
+    color: #ffe884;
+    font-size: 1.17em;
+    pointer-events: none;
+    opacity: 0.6;
+}
+
+/* --- COPY TOOLTIP --- */
+.copy-tooltip {
+    visibility: hidden;
+    opacity: 0;
+    background: #222c38ec;
+    color: #fcdc89;
+    font-size: 1em;
+    padding: 7px 16px;
+    border-radius: 10px;
+    box-shadow: 0 2px 16px #0007;
+    position: absolute;
+    z-index: 100;
+    white-space: nowrap;
+    pointer-events: none;
+    transition: opacity 0.13s;
+    border: 1px solid #efd37e55;
+    left: 50%;
+    top: 90%;
+    transform: translateX(-50%);
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !important;
+    font-weight: 400 !important;
+}
+
+.table-sort tr:last-child .copy-tooltip {
+    top: auto;
+    bottom: 90%;
+    transform: translateX(-50%) translateY(-10%);
+}
+
+.td-copiable {
+    cursor: pointer;
+    position: relative;
+    user-select: none;
+}
+
+.td-copiable:active {
+    background: rgba(207,176,59,0.14)!important;
+    color: #ffd061;
+}
+.td-canonical-copied {
+    animation: briefFlash 0.65s;
+}
+@keyframes briefFlash {
+    0%   { background: #fff6dbe6; }
+    50%  { background: #fff3c2b0; }
+    100% { background: inherit; }
+}
+
+mark {
+    background: #ffe564;
+    color: #230e00;
+    padding: 0 2px;
+    border-radius: 5px;
+}
+
+.def-sources {
+    position: absolute;
+    bottom: 7px;
+    right: 10px;
+    z-index: 5;
+    font-size: 0.97em;
+    pointer-events: none; /* source numbers themselves have pointer-events for tooltip */
+}
+.td-copiable .def-sources {
+    pointer-events: auto;
+}
+
+.def-source-number {
+    color: #ffd687;
+    background: #263244;
+    border-radius: 4px;
+    padding: 2px 5px;
+    margin: 0 1px;
+    cursor: pointer;
+    border: 1px solid #fcdc77aa;
+    font-size: 0.85em;
+    vertical-align: baseline;
+    box-shadow: 0 1px 5px #0005;
+    pointer-events: auto;
+    transition: background 0.21s, color 0.17s;
+    outline: none;
+}
+.def-source-number:hover {
+    background: #ffe8b0;
+    color: #624100;
+    border: 1px solid #ffd052;
+}
+
+
+/* Tooltip for sources */
+.def-source-tooltip {
+    position: absolute;
+    z-index: 9999;
+    background: #263244e5;
+    color: #ffeab9;
+    font-size: 1.01em;
+    padding: 7px 16px;
+    border-radius: 9px;
+    box-shadow: 0 3px 16px #0006;
+    pointer-events: auto;
+    border: 1px solid #efd37e9c;
+    white-space: pre-line;
+    max-width: 300px;
+	cursor: default;
+}
+
+.def-source-tooltip a {
+    color: #96daf0;
+    text-decoration: underline;
+}
+.def-source-tooltip a:hover {
+    color: #ffd757;
+}
