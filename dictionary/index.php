@@ -1,17 +1,72 @@
 <?php
-// Database connection details
-$host = '';
-$username = '';
-$password = '';
-$database = '';
+function loadDotEnv(string $filePath): void {
+    if (!is_readable($filePath)) return;
+    $lines = file($filePath, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+    foreach ($lines as $line) {
+        $line = trim($line);
+        if ($line === '' || $line[0] === '#') continue;
+
+        if (stripos($line, 'export ') === 0) {
+            $line = trim(substr($line, 7));
+        }
+        if (strpos($line, '=') === false) continue;
+
+        list($name, $value) = explode('=', $line, 2);
+        $name = trim($name);
+        $value = trim($value);
+
+        if ($value !== '') {
+            $first = $value[0];
+            $last  = substr($value, -1);
+            if (($first === '"' && $last === '"') || ($first === "'" && $last === "'")) {
+                $value = substr($value, 1, -1);
+                if ($first === '"') {
+                    $value = str_replace(
+                        ['\\n','\\r','\\t','\\"','\\\\'],
+                        ["\n", "\r", "\t", '"',  '\\'],
+                        $value
+                    );
+                }
+            } else {
+                $hashPos = strpos($value, '#');
+                if ($hashPos !== false) {
+                    $value = rtrim(substr($value, 0, $hashPos));
+                }
+            }
+        }
+
+        if ($name === '') continue;
+        if (getenv($name) === false && !array_key_exists($name, $_ENV)) {
+            putenv("$name=$value");
+            $_ENV[$name] = $value;
+        }
+    }
+}
+
+$envCandidates = [
+    dirname(__DIR__, 2) . '/.env',
+    __DIR__ . '/.env',
+];
+foreach ($envCandidates as $candidate) {
+    if (is_readable($candidate)) { loadDotEnv($candidate); break; }
+}
+
+// Read configuration from environment
+$host    = getenv('DICT_DB_HOST')       ?: ($_ENV['DICT_DB_HOST']    ?? '');
+$username= getenv('DICT_DB_USER')       ?: ($_ENV['DICT_DB_USER']    ?? '');
+$password= getenv('DICT_DB_PASS')       ?: ($_ENV['DICT_DB_PASS']    ?? '');
+$database= getenv('DICT_DB_NAME')       ?: ($_ENV['DICT_DB_NAME']    ?? '');
+$port    = (int)(getenv('DICT_DB_PORT') ?: ($_ENV['DICT_DB_PORT']    ?? 3306));
+$socket  = getenv('DICT_DB_SOCKET')     ?: ($_ENV['DICT_DB_SOCKET']  ?? null);
 
 $word_rows = [];
 $db_error = null;
 
 // Connect and fetch words
 if ($host && $username && $database) {
+    mysqli_report(MYSQLI_REPORT_OFF);
     try {
-        $conn = @new mysqli($host, $username, $password, $database);
+        $conn = @new mysqli($host, $username, $password, $database, $port, $socket ?: null);
         if ($conn->connect_errno) {
             $db_error = "Could not connect to the dictionary database.";
         } else {
@@ -21,16 +76,18 @@ if ($host && $username && $database) {
                 while($row = $result->fetch_assoc()) {
                     $word_rows[] = $row;
                 }
+                $result->free();
             }
             $conn->close();
         }
-    } catch (Exception $e) {
+    } catch (Throwable $e) {
         $db_error = "Could not connect to the dictionary database.";
     }
 } else {
     $db_error = "Database settings are not configured.";
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
