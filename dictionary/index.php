@@ -86,6 +86,12 @@ if ($host && $username && $database) {
 } else {
     $db_error = "Database settings are not configured.";
 }
+
+// Audio clips are named after the normalised word, e.g. "agaeti blodhren.mp3"
+$audio_files = [];
+foreach (glob(__DIR__ . '/audio/*.mp3') ?: [] as $path) {
+    $audio_files[] = basename($path, '.mp3');
+}
 ?>
 
 <!DOCTYPE html>
@@ -190,6 +196,8 @@ if ($host && $username && $database) {
 <script>
 const wordRows = <?php echo json_encode($word_rows, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP); ?>;
 wordRows.push({word: 'invalid entry', definition: 'the name of the ancient language'});
+const audioFiles = new Set(<?php echo json_encode($audio_files, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP); ?>);
+let currentAudio = null;
 let sortState = { word: false, definition: false };
 let lastSort = 'word';
 let filterValue = '';
@@ -203,6 +211,17 @@ function escapeHTML(text) {
 
 function accentFold(str) {
     return str.normalize('NFD').replace(/[\u0300-\u036f]/g, "");
+}
+
+// Matches the audio file naming: no accents, lowercase, straight apostrophes
+function audioName(word) {
+    return accentFold(word).toLowerCase().replace(/[\u2018\u2019]/g, "'").trim();
+}
+
+function playAudio(name) {
+    if (currentAudio) currentAudio.pause();
+    currentAudio = new Audio('audio/' + encodeURIComponent(name) + '.mp3');
+    currentAudio.play();
 }
 
 // Performs filtering (and sorting) before rendering
@@ -275,9 +294,14 @@ function renderTable(data) {
                     `</span>`;
             }
         }
+        const audio = audioName(row.word);
+        const audioHtml = audioFiles.has(audio)
+            ? `<button type="button" class="audio-button" data-audio="${escapeHTML(audio)}" aria-label="Play pronunciation of ${escapeHTML(row.word)}" title="Play pronunciation">&#128266;</button>`
+            : '';
         tr.innerHTML = `
             <td class="td-copiable" data-label="Ancient Word">
                 <span class="copiable-text">${wordHtml}</span>
+                ${audioHtml}
                 <span class="copy-tooltip">Click to copy</span>
             </td>
             <td class="td-copiable" data-label="English Translation">
@@ -337,8 +361,8 @@ function initialiseCopyToClipboard() {
 
         // --- Hover (show after delay) ---
         td.addEventListener('mouseover', function(e) {
-            // Only show tooltip if not over a source number
-            if (e.target.classList.contains('def-source-number')) {
+            // Only show tooltip if not over a source number or audio button
+            if (e.target.classList.contains('def-source-number') || e.target.classList.contains('audio-button')) {
                 tooltip.style.opacity = "0";
                 tooltip.style.visibility = "hidden";
                 if (showTimer) { clearTimeout(showTimer); showTimer = null; }
@@ -354,8 +378,8 @@ function initialiseCopyToClipboard() {
         });
 
         td.addEventListener('mouseout', function(e) {
-            // If leaving a source, but still inside cell (relatedTarget is inside td): show tooltip after delay
-            if (e.target.classList.contains('def-source-number')) {
+            // If leaving a source or audio button, but still inside cell (relatedTarget is inside td): show tooltip after delay
+            if (e.target.classList.contains('def-source-number') || e.target.classList.contains('audio-button')) {
                 if (td.contains(e.relatedTarget) && e.relatedTarget !== td) {
                     if (showTimer) clearTimeout(showTimer);
                     showTimer = setTimeout(() => {
@@ -376,6 +400,11 @@ function initialiseCopyToClipboard() {
         // --- Click copy behaviour ---
         td.addEventListener('click', function (e) {
             if (e.target.closest('.def-source-number')) return;
+            const audioBtn = e.target.closest('.audio-button');
+            if (audioBtn) {
+                playAudio(audioBtn.dataset.audio);
+                return;
+            }
             let copiableText = td.querySelector('.copiable-text');
             let valToCopy = copiableText.textContent.trim();
             navigator.clipboard.writeText(valToCopy).then(() => {
@@ -397,6 +426,8 @@ function initialiseCopyToClipboard() {
         td.setAttribute('role', 'button');
         td.setAttribute('aria-label', 'Click to copy');
         td.addEventListener('keydown', function (e) {
+            // Let the audio button handle its own Enter/Space
+            if (e.target.closest('.audio-button')) return;
             if (e.key === "Enter" || e.key === " ") {
                 e.preventDefault();
                 td.click();
